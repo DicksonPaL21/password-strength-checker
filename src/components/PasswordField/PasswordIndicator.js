@@ -14,8 +14,6 @@ const PasswordIndicator = ({ score, ...props }) => {
     className: 'password-indicator',
   };
 
-  console.log('cc-score', score);
-
   return (
     <div {...passwordIndicatorProps}>
       {[...Array(5)].map((_, idx) => (

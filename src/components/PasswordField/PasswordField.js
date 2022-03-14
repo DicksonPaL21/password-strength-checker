@@ -14,8 +14,6 @@ const PasswordField = ({ value, onChange, score, ...props }) => {
     onChange,
   };
 
-  console.log('cc-value', value);
-
   const passwordIndicatorProps = {
     score: !!value && score,
   };
