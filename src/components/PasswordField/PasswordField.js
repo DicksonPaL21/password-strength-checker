@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PasswordIndicator from './PasswordIndicator';
 import './PasswordField.scss';
 
-const PasswordField = ({ value, onChange, score, ...props }) => {
+const PasswordField = ({ value, score, ...props }) => {
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, [score]);
+
+  const onChange = (e) => {
+    setIsLoading(true);
+    props.onChange(e);
+  };
+
   const passwordFieldProps = {
     className: 'password-field',
   };
@@ -20,8 +31,8 @@ const PasswordField = ({ value, onChange, score, ...props }) => {
   };
 
   const btnProps = {
-    className: 'show-hide-btn',
-    onClick: () => setIsShowPassword(!isShowPassword),
+    className: ['show-hide-btn', isLoading ? 'loading' : ''].join(' '),
+    onClick: () => !isLoading && setIsShowPassword(!isShowPassword),
   };
 
   return (
